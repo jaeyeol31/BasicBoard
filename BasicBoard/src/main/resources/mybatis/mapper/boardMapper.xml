@@ -18,8 +18,8 @@
 
     <!-- 게시글 추가 -->
     <insert id="insertBoard" parameterType="yeol.boot.begin.entity.Board">
-        INSERT INTO board (NOTICT_ID, TITLE, CONTENT, BOARD_WRITER, CREATED_AT)
-        VALUES (#{notictId}, #{title}, #{contents}, #{boardWriter}, #{createAt})
+        INSERT INTO board ( TITLE, CONTENT, BOARD_WRITER, CREATED_AT)
+        VALUES (#{title}, #{contents}, #{boardWriter}, CURRENT_TIMESTAMP)
     </insert>
 
     <!-- 게시글 수정 -->
