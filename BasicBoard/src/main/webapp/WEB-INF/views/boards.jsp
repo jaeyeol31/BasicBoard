@@ -12,7 +12,14 @@
 	rel="stylesheet">
 </head>
 <body>
-
+	<form action="/board/search" method="get">
+		<div class="mb-3">
+			<label for="keyword" class="form-label">검색어 입력</label> <input
+				type="text" class="form-control" id="keyword" name="keyword"
+				placeholder="제목 검색어 입력">
+		</div>
+		<button type="submit" class="btn btn-primary">검색</button>
+	</form>
 	<div class="container mt-5">
 		<div class="d-flex justify-content-between">
 			<h1 class="mb-4">게시글 목록</h1>
@@ -34,15 +41,15 @@
 			<tbody>
 				<c:forEach var="board" items="${boards}">
 					<tr>
-						<td>${board.notictId}</td>
-						<td><a href="/board/${board.notictId}"
+						<td>${board.boardId}</td>
+						<td><a href="/board/${board.boardId}"
 							class="text-decoration-none">${board.title}</a></td>
 						<td>${board.contents}</td>
 						<td>${board.boardWriter}</td>
 						<td>${board.createAt}</td>
-						<td><a href="/board/update/${board.notictId}"
+						<td><a href="/board/update/${board.boardId}"
 							class="btn btn-warning btn-sm">수정</a> <a
-							href="/board/delete/${board.notictId}"
+							href="/board/delete/${board.boardId}"
 							class="btn btn-danger btn-sm">삭제</a></td>
 					</tr>
 				</c:forEach>

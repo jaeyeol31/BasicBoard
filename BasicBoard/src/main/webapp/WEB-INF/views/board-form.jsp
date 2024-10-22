@@ -16,7 +16,7 @@
 	<div class="container mt-5">
 		<h1 class="mb-4">
 			<c:choose>
-				<c:when test="${board.notictId != null}">
+				<c:when test="${board.boardId != null}">
                     게시글 수정
                 </c:when>
 				<c:otherwise>
@@ -27,8 +27,8 @@
 
 		<form
 			action="<c:choose>
-                        <c:when test="${board.notictId != null}">
-                            /board/update/${board.notictId}
+                        <c:when test="${board.boardId != null}">
+                            /board/update/${board.boardId}
                         </c:when>
                         <c:otherwise>
                             /board/save
@@ -56,7 +56,7 @@
 
 			<button type="submit" class="btn btn-primary">
 				<c:choose>
-					<c:when test="${board.notictId != null}">
+					<c:when test="${board.boardId != null}">
                         수정
                     </c:when>
 					<c:otherwise>

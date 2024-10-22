@@ -28,7 +28,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>${board.notictId}</td>
+					<td>${board.boardId}</td>
 					<td>${board.title}</td>
 					<td>${board.contents}</td>
 					<td>${board.boardWriter}</td>

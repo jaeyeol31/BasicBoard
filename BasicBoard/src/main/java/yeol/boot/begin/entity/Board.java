@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Board {
-    private int notictId;  // NOTICT_ID
+    private int boardId;  // BOARD_ID
     private String title;  // TITLE
     private String contents;  // CONTENT
     private String boardWriter;  // BOARD_WRITER

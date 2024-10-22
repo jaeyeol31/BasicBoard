@@ -15,6 +15,7 @@ import yeol.boot.begin.mapper.BoardMapper;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
+	
 	@Autowired
 	private final BoardMapper boardMapper;
 
@@ -50,6 +51,17 @@ public class BoardService {
 	public void deleteBoard(int id) {
 		boardMapper.deleteBoard(id);
 	}
+	
+	// 제목으로 게시글 검색
+    public List<BoardDTO> searchBoardByTitle(String keyword) {
+        List<Board> boards = boardMapper.searchBoardByTitle(keyword);
+        List<BoardDTO> boardDTOList = new ArrayList<>();
+        for (Board board : boards) {
+            boardDTOList.add(convertToDto(board));
+        }
+
+        return boardDTOList;
+    }
 
 	// Entity -> DTO 변환 메서드
 	private BoardDTO convertToDto(Board board) {

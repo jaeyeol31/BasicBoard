@@ -18,4 +18,6 @@ public interface BoardMapper {
     void updateBoard(Board board);
 
     void deleteBoard(int id); 
+    
+    List<Board> searchBoardByTitle(String keyword);
 }

@@ -3,35 +3,62 @@
  "mybatis-3-mapper.dtd">
 <mapper namespace="yeol.boot.begin.mapper.BoardMapper">
 
-    <!-- 게시글 목록 조회 -->
-    <select id="getBoardList" resultType="yeol.boot.begin.entity.Board">
-        SELECT NOTICT_ID AS notictId, TITLE AS title, CONTENT AS contents, BOARD_WRITER AS boardWriter, CREATED_AT AS createAt
-        FROM board
-    </select>
+	<!-- 게시글 목록 조회 -->
+	<select id="getBoardList"
+		resultType="yeol.boot.begin.entity.Board">
+		SELECT BOARD_ID AS boardId, TITLE AS title, CONTENT AS
+		contents,
+		BOARD_WRITER AS boardWriter, CREATED_AT AS createAt
+		FROM board
+	</select>
 
-    <!-- 게시글 상세 조회 -->
-    <select id="getBoardById" parameterType="int" resultType="yeol.boot.begin.entity.Board">
-        SELECT NOTICT_ID AS notictId, TITLE AS title, CONTENT AS contents, BOARD_WRITER AS boardWriter, CREATED_AT AS createAt
-        FROM board
-        WHERE NOTICT_ID = #{id}
-    </select>
+	<!-- 게시글 상세 조회 -->
+	<select id="getBoardById" parameterType="int"
+		resultType="yeol.boot.begin.entity.Board">
+		SELECT BOARD_ID AS boardId, TITLE AS title, CONTENT AS
+		contents,
+		BOARD_WRITER AS boardWriter, CREATED_AT AS createAt
+		FROM board
+		WHERE BOARD_ID = #{id}
+	</select>
 
-    <!-- 게시글 추가 -->
-    <insert id="insertBoard" parameterType="yeol.boot.begin.entity.Board">
-        INSERT INTO board ( TITLE, CONTENT, BOARD_WRITER, CREATED_AT)
-        VALUES (#{title}, #{contents}, #{boardWriter}, CURRENT_TIMESTAMP)
-    </insert>
+	<!-- 게시글 추가 -->
+	<insert id="insertBoard"
+		parameterType="yeol.boot.begin.entity.Board">
+		INSERT INTO board ( TITLE, CONTENT, BOARD_WRITER,
+		CREATED_AT)
+		VALUES (#{title}, #{contents}, #{boardWriter},
+		CURRENT_TIMESTAMP)
+	</insert>
 
-    <!-- 게시글 수정 -->
-    <update id="updateBoard" parameterType="yeol.boot.begin.entity.Board">
-        UPDATE board
-        SET TITLE = #{title}, CONTENT = #{contents}, BOARD_WRITER = #{boardWriter}
-        WHERE NOTICT_ID = #{notictId}
-    </update>
+	<!-- 게시글 수정 -->
+	<update id="updateBoard"
+		parameterType="yeol.boot.begin.entity.Board">
+		UPDATE board
+		SET TITLE = #{title}, CONTENT = #{contents},
+		BOARD_WRITER =
+		#{boardWriter}
+		WHERE BOARD_ID = #{boardId}
+	</update>
 
-    <!-- 게시글 삭제 -->
-    <delete id="deleteBoard" parameterType="int">
-        DELETE FROM board WHERE NOTICT_ID = #{notictId}
-    </delete>
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board WHERE
+		BOARD_ID = #{boardId}
+	</delete>
+
+
+	<!-- 제목으로 게시글 검색 -->
+	<select id="searchBoardByTitle" parameterType="string"
+		resultType="yeol.boot.begin.entity.Board">
+		SELECT
+		BOARD_ID AS boardId,
+		TITLE AS title,
+		DBMS_LOB.SUBSTR(CONTENT, 4000) AS contents,
+		BOARD_WRITER AS boardWriter,
+		CREATED_AT AS createAt
+		FROM BOARD
+		WHERE TITLE LIKE '%'||#{keyword}||'%'
+	</select>
 
 </mapper>

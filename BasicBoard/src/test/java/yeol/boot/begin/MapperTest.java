@@ -68,7 +68,7 @@ class MapperTest {
 
 		// 전체 게시글 목록에 대한 상세 내용 확인
 		for (BoardDTO board : boardList) {
-			System.out.println("게시글 번호: " + board.getNotictId());
+			System.out.println("게시글 번호: " + board.getBoardId());
 			System.out.println("제목: " + board.getTitle());
 			System.out.println("내용: " + board.getContents());
 			System.out.println("작성자: " + board.getBoardWriter());
